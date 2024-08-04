@@ -1448,48 +1448,6 @@ a {
 .cid-ujKrNLd3gz .mbr-section-btn {
   color: #000000;
 }
-.cid-ukuxkgwu4h {
-  padding-top: 6rem;
-  padding-bottom: 6rem;
-  background-color: #ffffff;
-}
-.cid-ukuxkgwu4h .mbr-fallback-image.disabled {
-  display: none;
-}
-.cid-ukuxkgwu4h .mbr-fallback-image {
-  display: block;
-  background-size: cover;
-  background-position: center center;
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-}
-.cid-ukuxkgwu4h .mbr-iconfont {
-  margin: auto;
-  display: inline-flex;
-  font-size: 2rem;
-  color: #9fe870;
-  width: 40px;
-  justify-content: center;
-  align-items: center;
-}
-.cid-ukuxkgwu4h .card-title,
-.cid-ukuxkgwu4h .iconfont-wrapper {
-  color: #232323;
-}
-.cid-ukuxkgwu4h .card-text {
-  color: #232323;
-}
-.cid-ukuxkgwu4h .mbr-section-title {
-  color: #232323;
-}
-.cid-ukuxkgwu4h .mbr-section-subtitle {
-  color: #232323;
-}
-.cid-ukuxkgwu4h .content-head {
-  max-width: 800px;
-}
 .cid-ujKImF8qFT {
   padding-top: 5rem;
   padding-bottom: 5rem;
@@ -1813,75 +1771,6 @@ a {
 }
 .cid-ujKuS5AiTU .mbr-section-subtitle DIV {
   text-align: center;
-}
-.cid-ukuC15Cdfc {
-  padding-top: 5rem;
-  padding-bottom: 5rem;
-  background-image: url("../../../assets/images/background1.jpg");
-}
-.cid-ukuC15Cdfc .mbr-fallback-image.disabled {
-  display: none;
-}
-.cid-ukuC15Cdfc .mbr-fallback-image {
-  display: block;
-  background-size: cover;
-  background-position: center center;
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-}
-.cid-ukuC15Cdfc .socicon-bg-facebook {
-  background: #1778f2;
-  color: #ffffff;
-}
-.cid-ukuC15Cdfc .socicon-bg-facebook:hover {
-  background: #0b60cb;
-}
-.cid-ukuC15Cdfc .socicon-bg-twitter {
-  background: #1da1f2;
-  color: #ffffff;
-}
-.cid-ukuC15Cdfc .socicon-bg-twitter:hover {
-  background: #0c85d0;
-}
-.cid-ukuC15Cdfc .socicon-bg-pinterest {
-  background: #e60023;
-  color: #ffffff;
-}
-.cid-ukuC15Cdfc .socicon-bg-pinterest:hover {
-  background: #b3001b;
-}
-.cid-ukuC15Cdfc .btn-social {
-  font-size: 32px;
-  border-radius: 50%;
-  padding: 0;
-  width: 72px;
-  height: 72px;
-  line-height: 55px;
-  position: relative;
-  cursor: pointer;
-  transition: all 0.3s ease-in-out;
-  border: none !important;
-}
-.cid-ukuC15Cdfc .btn-social i {
-  top: 0;
-  line-height: 55px;
-  width: 55px;
-}
-.cid-ukuC15Cdfc [class^="socicon-"]:before,
-.cid-ukuC15Cdfc [class*=" socicon-"]:before {
-  line-height: 55px;
-}
-.cid-ukuC15Cdfc .mbr-iconfont {
-  width: 72px;
-  height: 72px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 100%;
-  font-size: 32px;
-  transition: all 0.3s ease-in-out;
 }
 .cid-ujL68u1CJb {
   padding-top: 2rem;
