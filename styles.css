@@ -1,0 +1,67 @@
+body {
+    font-family: 'Nunito', sans-serif;
+    background: #fdfdfd;
+}
+
+.titulo-evento {
+    font-family: 'Great Vibes', cursive;
+    font-size: 3.5rem;
+    color: #333;
+}
+
+.mesa-titulo {
+    font-family: 'Great Vibes', cursive;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: #8b5e3c; /* Tono cálido */
+}
+
+.invitados-list li {
+    font-family: 'Great Vibes', cursive;
+    /*font-weight: 700;       Esto pondrá el texto en negrilla */
+    font-size: 1.5rem;    /* Un tamaño de letra más grande */
+    margin-bottom: 0.5rem; /* Espacio entre nombres */
+}
+
+.invitados-list {
+    list-style-type: disc;  /* viñetas por defecto */
+    padding-left: 1.5rem;   /* indentación */
+    margin: 1rem 0; 
+}
+
+
+/* Tarjeta con tono más subido, borde hermoso y esquinas redondeadas */
+.card {
+    background: #ffeef0; /* Un tono pastel rosado más subido */
+    border: 3px solid #e8b8b8; /* Un borde con tono rosado */
+    border-radius: 20px; /* Esquinas redondeadas */
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+}
+
+.form-control-lg {
+    border-radius: 30px;
+    font-size: 1.25rem;
+    padding: 1rem 1.5rem;
+}
+
+header p.lead {
+    font-size: 1.25rem;
+    color: #666;
+}
+
+footer p {
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+.highlight {
+    background-color: rgba(72, 255, 0, 0.651);
+    font-weight: bold;
+    color: #000;
+}

@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Matrimonio - Distribución de Mesas</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Fuente (opcional, para dar elegancia) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link 
+      href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Nunito:ital,wght@0,300;0,400;0,700;1,300&display=swap" 
+      rel="stylesheet">
+    <!-- CSS Propio -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-light">
+
+    <header class="container py-5 text-center">
+        <h1 class="display-4 titulo-evento">Bienvenidos a la Boda de Julián & Daniela</h1>
+        <p class="lead">Verifica tu mesa ingresando tu nombre o el de alguno de sus compañeros de mesa.</p>
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-6 mt-4">
+                <input type="text" id="searchInput" class="form-control form-control-lg" placeholder="Por favor busca tu nombre aquí...">
+            </div>
+        </div>
+    </header>
+
+    <main class="container py-4">
+        <!-- Ajustamos las columnas de las tarjetas -->
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4" id="mesasContainer">
+            
+            <!-- Mesa 1 -->
+            <div class="col mesa-card" data-guests="adriana garcia arboleda laura vargas alba luz carmona clarisa garcia maria teresa garcia isaias torres leidy torres jose rodrigo olarte maria teresa aristizabal ximena salgado garcia maria yolanda">
+                <div class="card h-100">
+                    <div class="card-body text-center">
+                        <h5 class="card-title mesa-titulo">Mesa 1</h5>
+                        <ul class="list-unstyled invitados-list">
+                            <li>Adriana García Arboleda</li>
+                            <li>Laura Vargas</li>
+                            <li>Alba Luz Carmona</li>
+                            <li>Clarisa García</li>
+                            <li>María Teresa García</li>
+                            <li>Isaias Torres</li>
+                            <li>Leidy Torres</li>
+                            <li>Jose Rodrigo Olarte</li>
+                            <li>Maria Teresa Aristizabal</li>
+                            <li>Ximena Salgado García</li>
+                            <li>Maria Yolanda</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Mesa 2 -->
+            <div class="col mesa-card" data-guests="angela andrea suarez arango luis gustavo montes emilsen pardo giron mauricio bedoya carolina duque maria camila cardenas daniel aguilar monica gutierrez oscar montealegre">
+                <div class="card h-100">
+                    <div class="card-body text-center">
+                        <h5 class="card-title mesa-titulo">Mesa 2</h5>
+                        <ul class="invitados-list">
+                            <li>Angela Andrea Suárez Arango</li>
+                            <li>Luis Gustavo Montes</li>
+                            <li>Emilsen Pardo Girón</li>
+                            <li>Mauricio Bedoya</li>
+                            <li>Carolina Duque</li>
+                            <li>Maria Camila Cardenas</li>
+                            <li>Daniel Aguilar</li>
+                            <li>Monica Gutierrez</li>
+                            <li>Oscar Montealegre</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Mesa 3 -->
+            <div class="col mesa-card" data-guests="alvaro vasquez gloria lucia cifuentes ana maria bustamante gladys milena patino jairo buitrago magnolia herrera maria primitiva buitrago john emil munoz zapata luz francy montoya duque natalia marulanda">
+                <div class="card h-100">
+                    <div class="card-body text-center">
+                        <h5 class="card-title mesa-titulo">Mesa 3</h5>
+                        <ul class="invitados-list">
+                            <li>Álvaro Vasquez</li>
+                            <li>Gloria Lucía Cifuentes</li>
+                            <li>Ana Maria Bustamante</li>
+                            <li>Gladys Milena Patiño</li>
+                            <li>Jairo Buitrago</li>
+                            <li>Magnolia Herrera</li>
+                            <li>Maria Primitiva Buitrago</li>
+                            <li>John Emil Muñoz Zapata</li>
+                            <li>Luz Francy Montoya Duque</li>
+                            <li>Natalia Marulanda</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Mesa 4 -->
+            <div class="col mesa-card" data-guests="anderson hoyos juliana garcia beatriz helena restrepo garcia dora escalante jhanfer garcia jose bernardo restrepo leidy steven garcia carolina hoyos paulina garcia">
+                <div class="card h-100">
+                    <div class="card-body text-center">
+                        <h5 class="card-title mesa-titulo">Mesa 4</h5>
+                        <ul class="invitados-list">
+                            <li>Anderson Hoyos</li>
+                            <li>Juliana García</li>
+                            <li>Beatriz Helena Restrepo García</li>
+                            <li>Dora Escalante</li>
+                            <li>Jhanfer García</li>
+                            <li>Jose Bernardo Restrepo</li>
+                            <li>Leidy</li>
+                            <li>Steven García</li>
+                            <li>Carolina Hoyos</li>
+                            <li>Paulina García</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <!-- Mesa 5 -->
+            <div class="col mesa-card" data-guests="erika bedoya carlos suarez mercedes orozco jose luz marina zuluaga rafael aguilera esneda garcia rodolfo bedoya mayerly garcia maria eugenia jaramillo">
+                <div class="card h-100">
+                    <div class="card-body text-center">
+                        <h5 class="card-title mesa-titulo">Mesa 5</h5>
+                        <ul class="invitados-list">
+                            <li>Erika Bedoya</li>
+                            <li>Carlos Suarez</li>
+                            <li>Mercedes Orozco</li>
+                            <li>José</li>
+                            <li>Luz Marina Zuluaga</li>
+                            <li>Rafael Aguilera</li>
+                            <li>Esneda García</li>
+                            <li>Rodolfo Bedoya</li>
+                            <li>Mayerly García</li>
+                            <li>Maria Eugenia Jaramillo</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Mesa 6 -->
+            <div class="col mesa-card" data-guests="carlos alberto zuluaga carlos mauricio zuluaga maria raquel garcia dorien rios hernandez harol cardona rios laura plata jose omar buitrago luz dary orozco">
+                <div class="card h-100">
+                    <div class="card-body text-center">
+                        <h5 class="card-title mesa-titulo">Mesa 6</h5>
+                        <ul class="invitados-list">
+                            <li>Carlos Alberto Zuluaga</li>
+                            <li>Carlos Mauricio Zuluaga</li>
+                            <li>Maria Raquel Garcia</li>
+                            <li>Dorien Rios Hernandez</li>
+                            <li>Harol Cardona Rios</li>
+                            <li>Laura Plata</li>
+                            <li>Jose Omar Buitrago</li>
+                            <li>Luz Dary Orozco</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Mesa 7 -->
+            <div class="col mesa-card" data-guests="jorge omar orozco angela maria orozco catalina orozco juan pablo orozco nataly barco luciana orozco paulina orozco nicolas arroyave jhoana orozco samuel arroyave">
+                <div class="card h-100">
+                    <div class="card-body text-center">
+                        <h5 class="card-title mesa-titulo">Mesa 7</h5>
+                        <ul class="invitados-list">
+                            <li>Jorge Omar Orozco</li>
+                            <li>Angela Maria Orozco</li>
+                            <li>Catalina Orozco</li>
+                            <li>Juan Pablo Orozco</li>
+                            <li>Nataly Barco</li>
+                            <li>Luciana Orozco</li>
+                            <li>Paulina Orozco</li>
+                            <li>Nicolás Arroyave</li>
+                            <li>Jhoana Orozco</li>
+                            <li>Samuel Arroyave</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Mesa 8 -->
+            <div class="col mesa-card" data-guests="carlos andres orozco daniela orozco munoz carolina orozco santafe laura orozco santafe luis daniel orozco natalia tavera esteban marulanda">
+                <div class="card h-100">
+                    <div class="card-body text-center">
+                        <h5 class="card-title mesa-titulo">Mesa 8</h5>
+                        <ul class="invitados-list">
+                            <li>Carlos Andrés Orozco</li>
+                            <li>Daniela Orozco Muñoz</li>
+                            <li>Carolina Orozco Santafe</li>
+                            <li>Laura Orozco Santafe</li>
+                            <li>Luis Daniel Orozco</li>
+                            <li>Natalia Tavera</li>
+                            <li>Esteban Marulanda</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Mesa 9 -->
+            <div class="col mesa-card" data-guests="alexander uriel parra orozco grisel gomez sara parra luis alirio tavera maria gladys orozco biviana parra orozco jairo ferney parra orozco luz piedad orozco manuela parra orozco juanita parra orozco">
+                <div class="card h-100">
+                    <div class="card-body text-center">
+                        <h5 class="card-title mesa-titulo">Mesa 9</h5>
+                        <ul class="invitados-list">
+                            <li>Alexander Uriel Parra Orozco</li>
+                            <li>Grisel Gomez</li>
+                            <li>Sara Parra</li>
+                            <li>Luis Alirio Tavera</li>
+                            <li>Maria Gladys Orozco</li>
+                            <li>Biviana Parra Orozco</li>
+                            <li>Jairo Ferney Parra Orozco</li>
+                            <li>Luz Piedad Orozco</li>
+                            <li>Manuela Parra Orozco</li>
+                            <li>Juanita Parra Orozco</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Mesa 10 -->
+            <div class="col mesa-card" data-guests="fernando orozco omaira londono julio cesar orozco pilar arias dora ines orozco oscar salazar pedro nel orozco dora ligian santafe magola orozco rigoberto villa">
+                <div class="card h-100">
+                    <div class="card-body text-center">
+                        <h5 class="card-title mesa-titulo">Mesa 10</h5>
+                        <ul class="invitados-list">
+                            <li>Fernando Orozco</li>
+                            <li>Omaira Londoño</li>
+                            <li>Julio Cesar Orozco</li>
+                            <li>Pilar Arias</li>
+                            <li>Dora Inés Orozco</li>
+                            <li>Oscar Salazar</li>
+                            <li>Pedro Nel Orozco</li>
+                            <li>Dora Ligian Santafe</li>
+                            <li>Magola Orozco</li>
+                            <li>Rigoberto Villa</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </main>
+
+    <footer class="container text-center py-4">
+        <p class="text-muted small">© 2024 Boda Julián & Daniela. Todos los derechos reservados.</p>
+    </footer>
+
+    <!-- JavaScript para el filtrado -->
+    <script>
+        const searchInput = document.getElementById('searchInput');
+        const mesas = document.querySelectorAll('.mesa-card');
+    
+        // Asignar data-original-text si no está asignado
+        mesas.forEach(mesa => {
+            const lis = mesa.querySelectorAll('li');
+            lis.forEach(li => {
+                if (!li.hasAttribute('data-original-text')) {
+                    li.setAttribute('data-original-text', li.textContent.trim());
+                }
+            });
+        });
+    
+        searchInput.addEventListener('input', () => {
+            const query = searchInput.value.toLowerCase().trim();
+    
+            mesas.forEach(mesa => {
+                const guests = mesa.getAttribute('data-guests');
+                const lis = mesa.querySelectorAll('li');
+    
+                // Mostrar u ocultar la mesa
+                if (guests.includes(query) || query === '') {
+                    mesa.style.display = '';
+                } else {
+                    mesa.style.display = 'none';
+                }
+    
+                // Resaltar coincidencias en cada li
+                lis.forEach(li => {
+                    const originalText = li.getAttribute('data-original-text');
+                    // Restauramos el texto original primero
+                    li.textContent = originalText;
+    
+                    if (query !== '' && originalText.toLowerCase().includes(query)) {
+                        // Usar una expresión regular para resaltar todas las coincidencias
+                        const regex = new RegExp(`(${query})`, 'gi');
+                        // Reemplazamos la coincidencia por un span highlight
+                        const newText = originalText.replace(regex, '<span class="highlight">$1</span>');
+                        li.innerHTML = newText;
+                    }
+                });
+            });
+        });
+    </script>
+    
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
