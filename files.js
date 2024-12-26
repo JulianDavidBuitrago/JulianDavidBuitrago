@@ -71,70 +71,112 @@ import { getDatabase, ref as dbRef, push, get } from "https://www.gstatic.com/fi
         }
       
         // Subir archivos a Storage
-        uploadFile() {
-          const name = document.getElementById('name').value;
-          const fileInput = document.getElementById('file');
-          const files = fileInput.files; // TODOS los archivos que seleccionó el usuario
-        
-          // Validar que haya nombre y al menos 1 archivo
-          if (!name || files.length === 0) {
-            Swal.fire('¡Ups!', 'Por favor, completa tu nombre y selecciona uno o más archivos.', 'warning');
+        uploadFiles() {
+          const files = fileInput.files;
+          if (!files.length) {
+            Swal.fire('¡Ups!', 'Por favor, selecciona al menos un archivo.', 'warning');
             return;
           }
         
-          // 1. Antes de iniciar, mostramos un spinner con SweetAlert
+          // 1) Calculamos el tamaño total de todos los archivos
+          let totalBytes = 0;
+          for (let i = 0; i < files.length; i++) {
+            totalBytes += files[i].size;
+          }
+          let uploadedBytes = 0; // Bytes subidos globalmente
+        
+          // 2) Creamos un SweetAlert con HTML personalizado (barra + spinner)
+          //    Observa que la barra tiene id="progressBar" para luego modificarla
           Swal.fire({
             title: 'Subiendo archivos...',
-            text: 'Por favor, espera un momento.',
             allowOutsideClick: false,
-            didOpen: () => {
-              Swal.showLoading();
-            }
+            showConfirmButton: false, // No mostrar botón de "OK"
+            html: `
+              <div class="d-flex align-items-center flex-column">
+                <div class="spinner-border mb-3" role="status"></div>
+                <div class="w-100">
+                  <div class="progress" style="height: 25px;">
+                    <div id="progressBar"
+                         class="progress-bar progress-bar-striped progress-bar-animated"
+                         role="progressbar"
+                         style="width: 0%;">
+                      0%
+                    </div>
+                  </div>
+                </div>
+              </div>
+            `
           });
-          
         
-          // 2. Crear un array de promesas para subir cada archivo
+          // Array de promesas para usar Promise.all
           const uploadPromises = [];
         
+          // 3) Subir cada archivo y actualizar la barra
           for (let i = 0; i < files.length; i++) {
-            const file = files[i];
-            const fileName = `${Date.now()}-${file.name}`;
-            
-            // Referencia en Storage a la carpeta "uploads/"
-            const storageRef = this.storage.ref(`uploads/${fileName}`);
-            
-            // Promesa que sube el archivo y luego obtiene la URL de descarga
-            const uploadTaskPromise = storageRef
-              .put(file)
-              .then((snapshot) => snapshot.ref.getDownloadURL());
-            
+            const file       = files[i];
+            const fileName   = `${Date.now()}-${file.name}`;
+            const storageRef = storage.ref(`uploads/${fileName}`);
+        
+            let lastTransferred = 0;
+        
+            const uploadTaskPromise = new Promise((resolve, reject) => {
+              const uploadTask = storageRef.put(file);
+        
+              uploadTask.on(
+                'state_changed',
+                (snapshot) => {
+                  const currentTransferred = snapshot.bytesTransferred;
+                  const increment = currentTransferred - lastTransferred;
+                  uploadedBytes += increment;
+                  lastTransferred = currentTransferred;
+        
+                  // Cálculo de porcentaje global
+                  const progressPercent = (uploadedBytes / totalBytes) * 100;
+        
+                  // Actualizar la barra en el SweetAlert
+                  const progressBar = document.getElementById('progressBar');
+                  progressBar.style.width = `${progressPercent.toFixed(2)}%`;
+                  progressBar.textContent = `${progressPercent.toFixed(2)}%`;
+                },
+                (error) => {
+                  console.error('Error al subir:', error);
+                  reject(error);
+                },
+                async () => {
+                  // Al finalizar este archivo
+                  const downloadURL = await uploadTask.snapshot.ref.getDownloadURL();
+                  resolve({ fileName, downloadURL });
+                }
+              );
+            });
+        
             uploadPromises.push(uploadTaskPromise);
           }
         
-          // 3. Esperar a que TODAS las subidas terminen usando Promise.all
+          // 4) Esperamos a que terminen TODAS las subidas
           Promise.all(uploadPromises)
-            .then((downloadURLs) => {
-              // Cerramos el spinner
-              Swal.close();
+            .then((results) => {
+              // results = array de objetos { fileName, downloadURL }
+              Swal.close(); // Cerramos el SweetAlert con la barra
         
               // Mostramos un mensaje de éxito
-              Swal.fire('¡Listo!', 'Se subieron todos los archivos con éxito.', 'success');
+              Swal.fire({
+                icon: 'success',
+                title: '¡Archivos subidos!',
+                html: `
+                  <p>Se subieron todos los archivos con éxito.</p>
+                  <ul>
+                    ${results.map(r => `<li><strong>${r.fileName}</strong> - <a href="${r.downloadURL}" target="_blank">Ver</a></li>`).join('')}
+                  </ul>
+                `
+              });
         
-              // Limpieza de campos
-              document.getElementById('status').innerText = 'Todos los archivos se subieron con éxito.';
+              // Reseteamos el input
               fileInput.value = '';
-              document.getElementById('name').value = '';
-        
-              // (Opcional) Aquí podrías guardar la información (nombre, downloadURLs, etc.) en una base de datos
-              // Y recargar la galería para que muestre los nuevos archivos
-              this.loadMediaFromStorage();
             })
             .catch((error) => {
-              // Si alguna subida falla, vienes aquí
-              Swal.close();
+              Swal.close(); // Cerramos el SweetAlert de progreso
               Swal.fire('Error', `Hubo un problema subiendo los archivos: ${error}`, 'error');
-              console.error('Error al subir archivos:', error);
-              document.getElementById('status').innerText = 'Error al subir los archivos.';
             });
         }
         
