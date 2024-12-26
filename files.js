@@ -91,6 +91,7 @@ import { getDatabase, ref as dbRef, push, get } from "https://www.gstatic.com/fi
               Swal.showLoading();
             }
           });
+          
         
           // 2. Crear un array de promesas para subir cada archivo
           const uploadPromises = [];
@@ -197,7 +198,7 @@ import { getDatabase, ref as dbRef, push, get } from "https://www.gstatic.com/fi
         } */
       
         // Cargar la lista de archivos directamente desde Storage
-        loadMediaFromStorage() {
+       /*  loadMediaFromStorage() {
           const gallery = document.getElementById('mediaGallery');
           gallery.innerHTML = ''; // Limpiar la galería antes de cargar
       
@@ -255,7 +256,73 @@ import { getDatabase, ref as dbRef, push, get } from "https://www.gstatic.com/fi
               console.error('Error al listar archivos en Storage:', error);
               gallery.innerHTML = '<p class="text-center text-danger">Error al cargar archivos de Storage.</p>';
             });
-        }
+        } */
+            loadMediaFromStorage() {
+              const gallery = document.getElementById('mediaGallery');
+              const fileCountElement = document.getElementById('fileCount');
+              
+              // 1) Limpiamos la galería antes de cargar (por si había algo anterior)
+              gallery.innerHTML = '';
+              
+              // 2) Llamamos a la referencia de Storage donde tenemos los archivos
+              const uploadsRef = this.storage.ref('uploads');
+              
+              // 3) Pedimos la lista de archivos dentro de "uploads"
+              uploadsRef.listAll()
+                .then((res) => {
+                  // res.items es un array con todas las referencias a archivos
+                  const fileCount = res.items.length;
+                  
+                  // 4) Actualizamos el contador en la página
+                  fileCountElement.innerText = fileCount;
+            
+                  // 5) Recorremos cada archivo (itemRef) y lo mostramos en la galería
+                  res.items.forEach((itemRef) => {
+                    itemRef.getDownloadURL().then((url) => {
+                      // Aquí decides cómo mostrar imágenes vs. videos, etc.
+            
+                      const col = document.createElement('div');
+                      col.classList.add('col-12', 'col-md-4');
+            
+                      const card = document.createElement('div');
+                      card.classList.add('card', 'shadow-sm');
+            
+                      const mediaContainer = document.createElement('div');
+                      mediaContainer.classList.add('media-container', 'card-body', 'text-center');
+            
+                      // Si el nombre acaba en .jpg, .png... mostramos <img>, si acaba en .mp4... mostramos <video>
+                      if (itemRef.name.match(/\.(jpg|jpeg|png|gif)$/i)) {
+                        const img = document.createElement('img');
+                        img.src = url;
+                        mediaContainer.appendChild(img);
+                      } else if (itemRef.name.match(/\.(mp4|mov|avi|wmv|flv)$/i)) {
+                        const video = document.createElement('video');
+                        video.src = url;
+                        video.controls = true;
+                        mediaContainer.appendChild(video);
+                      } else {
+                        // Si no es imagen ni video, mostramos un enlace para descargar
+                        const link = document.createElement('a');
+                        link.href = url;
+                        link.target = '_blank';
+                        link.innerText = 'Descargar archivo';
+                        mediaContainer.appendChild(link);
+                      }
+            
+                      card.appendChild(mediaContainer);
+                      col.appendChild(card);
+                      gallery.appendChild(col);
+                    });
+                  });
+                })
+                .catch((error) => {
+                  // Si algo sale mal al listar, mostramos error en la consola o en la página
+                  console.error('Error al listar archivos en Storage:', error);
+                  gallery.innerHTML = '<p class="text-center text-danger">Error al cargar archivos de Storage.</p>';
+                  fileCountElement.innerText = 0; // Opcional, por si quieres ponerlo en 0 cuando hay error
+                });
+            }
+            
       }
       
       // Instanciar la clase cuando cargue el DOM
