@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Boda Memories</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #f8f9fa;
+    }
+    .container {
+      margin-top: 30px;
+    }
+    .card {
+      margin-bottom: 20px;
+    }
+    .media-container img, .media-container video {
+      max-width: 100%;
+      height: auto;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 class="text-center mb-4">Boda Memories</h1>
+    <p class="text-center">¡Sube tus fotos y videos para compartir tus recuerdos!</p>
+    <div class="card shadow-sm p-4">
+      <form id="uploadForm" class="row g-3">
+        <div class="col-12">
+          <label for="name" class="form-label">Tu nombre</label>
+          <input type="text" class="form-control" id="name" placeholder="Escribe tu nombre" required>
+        </div>
+        <div class="col-12">
+          <label for="file" class="form-label">Selecciona una imagen o video</label>
+          <input type="file" class="form-control" id="file" accept="image/*,video/*" multiple>
+        </div>
+        <div class="col-12 text-center">
+          <button type="button" class="btn btn-primary" id="uploadButton">Subir</button>
+        </div>
+        <div id="status" class="text-center mt-2"></div>
+      </form>
+    </div>
+
+    <h2 class="mt-5 text-center">Recuerdos compartidos</h2>
+    <div id="mediaGallery" class="row g-3">
+      <!-- Aquí se mostrarán las imágenes y videos -->
+    </div>
+  </div>
+
+  <!-- Firebase Scripts -->
+  <script src="https://www.gstatic.com/firebasejs/9.19.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.19.1/firebase-storage-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.19.1/firebase-database-compat.js"></script>
+
+
+  <!-- Archivo JS como módulo -->
+   <script type="module" src="files.js"></script>
+   <!-- SweetAlert2 (versión más reciente al momento de escribir esto) -->
+   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+</body>
+</html>
