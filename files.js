@@ -257,69 +257,85 @@ import { getDatabase, ref as dbRef, push, get } from "https://www.gstatic.com/fi
               gallery.innerHTML = '<p class="text-center text-danger">Error al cargar archivos de Storage.</p>';
             });
         } */
-            loadMediaFromStorage() {
+           loadMediaFromStorage() {
+              // 1) Obtenemos el contenedor de la galería
               const gallery = document.getElementById('mediaGallery');
+              gallery.innerHTML = ''; // Limpia lo anterior
+            
+              // 2) (Opcional) Obtenemos el span del contador
               const fileCountElement = document.getElementById('fileCount');
-              
-              // 1) Limpiamos la galería antes de cargar (por si había algo anterior)
-              gallery.innerHTML = '';
-              
-              // 2) Llamamos a la referencia de Storage donde tenemos los archivos
-              const uploadsRef = this.storage.ref('uploads');
-              
-              // 3) Pedimos la lista de archivos dentro de "uploads"
+            
+              // 3) Referencia a la carpeta "uploads" en tu Storage
+              const uploadsRef = firebase.storage().ref('uploads');
+            
+              // 4) listAll() para obtener los archivos
               uploadsRef.listAll()
                 .then((res) => {
-                  // res.items es un array con todas las referencias a archivos
-                  const fileCount = res.items.length;
-                  
-                  // 4) Actualizamos el contador en la página
-                  fileCountElement.innerText = fileCount;
+                  // res.items -> array de archivos en la carpeta
+                  if (fileCountElement) {
+                    // Actualizamos el contador
+                    fileCountElement.innerText = res.items.length;
+                  }
             
-                  // 5) Recorremos cada archivo (itemRef) y lo mostramos en la galería
+                  // Recorremos cada archivo
                   res.items.forEach((itemRef) => {
+                    // Obtener URL de descarga
                     itemRef.getDownloadURL().then((url) => {
-                      // Aquí decides cómo mostrar imágenes vs. videos, etc.
-            
+                      // Creamos la columna .col-4, por ejemplo
                       const col = document.createElement('div');
                       col.classList.add('col-12', 'col-md-4');
             
+                      // Creamos la card
                       const card = document.createElement('div');
                       card.classList.add('card', 'shadow-sm');
             
+                      // Contenedor interno
                       const mediaContainer = document.createElement('div');
                       mediaContainer.classList.add('media-container', 'card-body', 'text-center');
             
-                      // Si el nombre acaba en .jpg, .png... mostramos <img>, si acaba en .mp4... mostramos <video>
+                      // === AQUI VIENE LO IMPORTANTE ===
+                      // 1) Creamos un enlace <a> para abrir en nueva pestaña
+                      const link = document.createElement('a');
+                      link.href = url;       // Apunta a la URL de descarga
+                      link.target = '_blank'; // Nueva pestaña
+            
+                      // 2) Creamos el elemento correspondiente (img/video)
                       if (itemRef.name.match(/\.(jpg|jpeg|png|gif)$/i)) {
+                        // Es una imagen
                         const img = document.createElement('img');
                         img.src = url;
-                        mediaContainer.appendChild(img);
+                        img.style.maxWidth = '100%';
+                        link.appendChild(img); // La metemos dentro del <a>
                       } else if (itemRef.name.match(/\.(mp4|mov|avi|wmv|flv)$/i)) {
+                        // Es un video
                         const video = document.createElement('video');
                         video.src = url;
                         video.controls = true;
-                        mediaContainer.appendChild(video);
+                        video.style.maxWidth = '100%';
+                        link.appendChild(video);
                       } else {
-                        // Si no es imagen ni video, mostramos un enlace para descargar
-                        const link = document.createElement('a');
-                        link.href = url;
-                        link.target = '_blank';
+                        // Si no es imagen ni video, ponemos un link genérico
                         link.innerText = 'Descargar archivo';
-                        mediaContainer.appendChild(link);
                       }
             
+                      // 3) Agregamos el enlace al mediaContainer
+                      mediaContainer.appendChild(link);
+            
+                      // Y luego armamos la card
                       card.appendChild(mediaContainer);
                       col.appendChild(card);
+            
+                      // Finalmente, lo agregamos a la galería
                       gallery.appendChild(col);
                     });
                   });
                 })
                 .catch((error) => {
-                  // Si algo sale mal al listar, mostramos error en la consola o en la página
                   console.error('Error al listar archivos en Storage:', error);
                   gallery.innerHTML = '<p class="text-center text-danger">Error al cargar archivos de Storage.</p>';
-                  fileCountElement.innerText = 0; // Opcional, por si quieres ponerlo en 0 cuando hay error
+                  if (fileCountElement) {
+                    fileCountElement.innerText = 0;
+                  }
                 });
             }
             
