@@ -10,7 +10,18 @@
   <style>
     body {
       background-color: #f8f9fa;
-    }
+      font-family: 'Arial', sans-serif;
+ /*      margin: 0;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+     /*  background: linear-gradient(135deg, #6a11cb, #2575fc); 
+      font-family: 'Arial', sans-serif;
+      color: #fff;
+      overflow: hidden;*/
+    } 
     .container {
       margin-top: 30px;
     }
@@ -27,12 +38,106 @@
       height: 25px;
       margin-bottom: 1rem;
     }
+
+    .thank-you-container {
+      text-align: center;
+      animation: fadeInContainer 2s ease-in-out;
+    }
+
+    .thank-you-message {
+      font-size: 1.8rem;
+      font-weight: bold;
+      margin-bottom: 20px;
+      animation: slideIn 1.5s ease-out;
+    }
+
+    .thank-you-submessage {
+      font-size: 1.2rem;
+      font-weight: 300;
+      line-height: 1.6;
+      opacity: 0;
+      animation: fadeInDelayed 3s ease-in-out forwards;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .thank-you-message {
+        font-size: 1.5rem;
+      }
+      .thank-you-submessage {
+        font-size: 1rem;
+      }
+    }
+
+    /* Animations */
+    @keyframes fadeInContainer {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes slideIn {
+      from {
+        transform: translateY(30px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    @keyframes fadeInDelayed {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes slideIn {
+      from {
+        transform: translateY(30px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    @keyframes fadeInDelayed {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
   </style>
 </head>
 <body>
   <div class="container">
     <h1 class="text-center mb-4">Boda Memories</h1>
-    <p class="text-center">¡Sube tus fotos y videos para compartir tus recuerdos!</p>
+    <div class="thank-you-container">
+      <p class="thank-you-message">Gracias a Dios y a todos los que nos apoyan con amor.</p>
+      <p class="thank-you-submessage">Tu apoyo nos inspira a seguir adelante. ¡Juntos somos más fuertes!</p>
+    </div>
+    <!-- <p class="text-center">¡Sube tus fotos y videos para compartir tus recuerdos!</p>
     <div class="card shadow-sm p-4">
       <form id="uploadForm" class="row g-3">
         <div class="col-12">
@@ -48,7 +153,7 @@
         </div>
         <div id="status" class="text-center mt-2"></div>
       </form>
-    </div>
+    </div> -->
 
     <h2 class="mt-5 text-center">Recuerdos compartidos</h2>
     <p>Hay <span id="fileCount">0</span> archivos subidos.</p>

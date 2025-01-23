@@ -43,11 +43,21 @@ import { getDatabase, ref as dbRef, push, get } from "https://www.gstatic.com/fi
 
       class BodaMemories {
         constructor() {
-          Swal.fire(
+          /* Swal.fire(
             '¡Bienvenid@!',
-            'Podras visualizar y subir las imagenes que tomaste.',
+            'Podras visualizar las fotos y videos.',
             'success'
-          );
+          ); */
+          Swal.fire({
+            title: '¡Bienvenid@!',
+            text: 'Podrás visualizar las fotos y videos.',
+            icon: 'success',
+            timer: 5000, // El tiempo en milisegundos (3000ms = 3 segundos)
+            timerProgressBar: true, // Muestra una barra de progreso
+            willClose: () => {
+              
+            }
+          });
           // Inicializamos Firebase
           const firebaseConfig = {
             apiKey: "AIzaSyB1fjJTfYLbi2ciuhIDDkMCrZAmAQcdEeg",
